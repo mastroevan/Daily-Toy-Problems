@@ -36,6 +36,7 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
  * @param {ListNode} head
  * @return {boolean}
  */
+ /*
 var hasCycle = function(head) {
   while (head) {
     if (head.visited) return true;
@@ -44,3 +45,15 @@ var hasCycle = function(head) {
   }
   return false;
 };
+
+*/
+var has cycle = (head) => {
+    let fast = head
+    let slow = head
+     while(fast && fast.next){
+              slow = slow.next
+        fast = fast.next.next
+         if(slow === fast) return true
+    }
+    return false;
+}
