@@ -32,20 +32,51 @@ Example 3:
  * @param {ListNode} headB
  * @return {ListNode}
  */
- var getIntersectionNode = function(headA, headB) {
-  let currentA = headA;
-  let currentB = headB;
-  while(currentA !== currentB) {
-    if (!currentA) {
-      currentA = headB;
-    } else {
-      currentA = currentA.next;
-    }
-    if (!currentB) {
-      currentB = headA;
-    } else {
-      currentB = currentB.next;
-    }
+//  var getIntersectionNode = function(headA, headB) {
+//   let currentA = headA;
+//   let currentB = headB;
+//   while(currentA !== currentB) {
+//     if (!currentA) {
+//       currentA = headB;
+//     } else {
+//       currentA = currentA.next;
+//     }
+//     if (!currentB) {
+//       currentB = headA;
+//     } else {
+//       currentB = currentB.next;
+//     }
+//   }
+//   return currentA;
+// };
+
+var getIntersectionNode = (headA, headB) => {
+  let lenA = 0,
+      lenB = 0,
+      currA = headA,
+      currB = headB;
+  while (currA) {
+    ++lenA;
+    currA = currA.next;
   }
-  return currentA;
-};
+  while (currB) {
+    ++lenB;
+    currB = currB.next;
+  }
+  currA = headA;
+  while (lenA > lenB) {
+    currA = currA.next;
+    --lenA;
+  }
+  currB = headB;
+  while (lenA < lenB) {
+    currB = currB.next;
+    --lenB;
+  }
+  
+  while (currA !== currB) {
+    currA = currA.next;
+    currB = currB.next;
+  }
+  return currA;
+}
