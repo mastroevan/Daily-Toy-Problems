@@ -24,20 +24,28 @@ Constraints:
  * @param {number} n
  * @return {number}
  */
+// var trailingZeroes = function(n) {
+//   let count = 0;
+//   let nStr = factorial(n).toString();
+//   for (i = nStr.length - 1; i >= 0; i--) {
+//     if (nStr[i] === '0') {
+//       count++;
+//     } else {
+//       break;
+//     }
+//   }
+//   return count;
+// };
+
+// const factorial = n => {
+//   return n ? n * factorial(n - 1) : 1;
+// }
+
 var trailingZeroes = function(n) {
-  let count = 0;
-  let nStr = factorial(n).toString();
-  for (i = nStr.length - 1; i >= 0; i--) {
-    if (nStr[i] === '0') {
-      count++;
-    } else {
-      break;
-    }
+  let zeroCount = 0;
+  while(n > 0) {
+      n = Math.floor(n / 5);
+      zeroCount += n;
   }
-  return count;
+  return zeroCount;
 };
-
-const factorial = n => {
-  return n ? n * factorial(n - 1) : 1;
-}
-
