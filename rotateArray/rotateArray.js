@@ -30,6 +30,13 @@ Constraints:
  */
 
 /*
+var rotate = function(nums, k, n=nums.length) {
+   if(k>=n) k%=n
+   nums.unshift(...nums.slice(-k));
+   nums.splice(n)
+};
+
+
  var rotate = function(nums, k) {
   if (k === 0) return nums; // if k were zero no rotations are made
   let rotates = k % nums.length; //this gets rid of excess full rotations
@@ -39,5 +46,5 @@ Constraints:
 */
 
 var rotate = (nums, k) => {
-  
+  nums.unshift(...nums.splice(k > nums.length ? nums.length - (k % nums.length) : nums.length - k));
 }
