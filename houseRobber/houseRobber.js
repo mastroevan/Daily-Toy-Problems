@@ -23,9 +23,28 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  */
+/*
  var rob = function(nums) {
   for(let i = nums.length - 3; i >= 0 ; i --){
       nums[i] += Math.max(nums[i+3],nums[i+2]) || nums[i+2];
   }
   return Math.max(nums[0],nums[1]) || nums[0];
+};
+*/
+
+var rob = function (nums) {
+  let robbedIdxPlus1 = 0;
+  let robbedIdxPlus2 = 0;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    const sumIfSkipped = robbedIdxPlus1;
+    const sumIfRobbed = nums[i] + robbedIdxPlus2;
+
+    const maxRobbedAtIdx = Math.max(sumIfSkipped, sumIfRobbed);
+
+    robbedIdxPlus2 = robbedIdxPlus1;
+    robbedIdxPlus1 = maxRobbedAtIdx;
+  }
+
+  return robbedIdxPlus1;
 };
