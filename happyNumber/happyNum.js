@@ -27,7 +27,7 @@ Constraints:
  * @param {number} n
  * @return {boolean}
  */
-
+/* //Faster than 65.88% of  JS submissions on leetcode AND usage of 41MB which is less than 16.29% of JS submissions
 var isHappy = function(n) {
   let arr = []
   while(true) {
@@ -40,3 +40,19 @@ var isHappy = function(n) {
       if (n === 1) return true;
   }
 };
+*/
+
+let sum = n => {
+  return n.toString().split('').reduce((a,b) => parseInt(a) + parseInt(b)**2, 0);
+}
+
+var isHappy = function(n) {
+  let temp = [];
+  while(!temp[n]){
+    temp.push(n);
+    n = sum(n);
+    if (n === 1) return true;
+  }
+  return false;
+};
+
