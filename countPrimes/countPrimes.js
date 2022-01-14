@@ -46,8 +46,8 @@ const isPrime = x => {
   }
   return true;
 }
-*/
 
+// the fast solution
 const countPrimes = n => {
   if (n === 0|| n === 1) {
     return 0;
@@ -69,3 +69,16 @@ const countPrimes = n => {
   }
   return count;
 }
+*/
+
+const countPrimes = (n) => {
+  let count = 0;
+  const isPrime = Array(n).fill(true);
+  for (let i = 2; i < n; i++) {
+    if (isPrime[i]) {
+      count++;
+      for (let j = i; j < n; j += i) isPrime[j] = false; // sieve out multiples
+    }
+  }
+  return count;
+};
