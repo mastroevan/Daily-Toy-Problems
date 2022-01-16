@@ -29,6 +29,7 @@ Constraints:
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+/*
  var invertTree = function(root) {
   const invertFunc = (node) => {
     if (node === null) {
@@ -43,3 +44,15 @@ Constraints:
   invertFunc(root);
   return root;
 };
+*/
+
+
+var invertTree = function(root) {
+  if (!root) return root;
+  const tmp = root?.left;
+  root.left = root?.right;
+  root.right = tmp;
+  invertTree(root.left);
+  invertTree(root.right);
+  return root;
+}
