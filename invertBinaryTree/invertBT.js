@@ -31,12 +31,12 @@ Constraints:
  */
  var invertTree = function(root) {
   const invertFunc = (node) => {
-    if (node === undefined) {
+    if (node === null) {
       return null;
     }
-    let temp = node.left;
+    const tmp = node.left;
     node.left = node.right;
-    node.right = temp;
+    node.right = tmp;
     invertFunc(node.left);
     invertFunc(node.right);
   }
