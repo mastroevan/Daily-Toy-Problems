@@ -19,6 +19,7 @@ Constraints:
  * @param {string} t
  * @return {boolean}
  */
+/* ORIGINAL SOLUTION:
  var isAnagram = function(s, t) {
   let sLen = s.length;
   let tLen = t.length;
@@ -33,4 +34,17 @@ Constraints:
   if (sCheck === tCheck) return true;
   return false;
 };
+*/
 
+//refactor
+var isAnagram = function(s, t) {
+  if (s.length !== t.length) return false;
+  let sArr = s.split('').sort();
+  let tArr = t.split('').sort();
+  let i = 0;
+  while (i < s.length) {
+      if (sArr[i] !== tArr[i]) return false;
+      i++;
+  }
+  return true;
+};
