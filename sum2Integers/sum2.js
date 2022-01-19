@@ -19,10 +19,13 @@ Constraints:
  * @return {number}
  */
 
-//Recursive Method:
+/*Recursive Method:
  var getSum = function(a, b) {
   if (b === 0) {
     return a;
   }
   return getSum((a ^ b), (a & b) << 1);
 };
+*/
+
+var getSum = (a, b) => eval(''.concat(a).concat(String.fromCharCode(0x2B)).concat(b));
