@@ -21,7 +21,8 @@ Constraints:
  * @param {string} s
  * @return {string}
  */
-
+/*
+//INITAL ATTEMPT:
 var reverseWords = function(s) {
   const charArr = s.split('');
   let start = 0;
@@ -49,3 +50,14 @@ const getSpaceIdx = (arr, start) => {
   }
   return start;
 }
+*/
+
+var reverseWords = function(s) {
+  const resultArr = [];
+  const charArr = s.split(' ');
+  for (x of charArr) {
+    x = x.split('').reverse().join('')
+    resultArr.push(x);
+  }
+  return resultArr.join(" ");
+};
