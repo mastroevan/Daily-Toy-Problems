@@ -23,13 +23,31 @@ Constraints:
  * @return {boolean}
  */
 
-const canPlaceFlowers = (flowerbed, n) => {
-  for (let i = 0; i < flowerbed.length; i++) {
+// const canPlaceFlowers = (flowerbed, n) => {
+//   for (let i = 0; i < flowerbed.length; i++) {
+//     if (!n) return true;
+//     if (!flowerbed[i] && !flowerbed[i - 1] && !flowerbed[i + 1]) {
+//       flowerbed[i] = 1;
+//       n--;
+//     }
+//   }
+//   return !n;
+// };
+
+
+//Another Solution:
+const canPlaceFlowers = (bed, n) => {
+  let zeroes = 1;
+  for (let num of bed) {
     if (!n) return true;
-    if (!flowerbed[i] && !flowerbed[i - 1] && !flowerbed[i + 1]) {
-      flowerbed[i] = 1;
-      n--;
-    }
+    if (!num) {
+      zeroes++;
+      if (zeroes === 3) {
+        n--;
+        zeroes = 1;
+      }
+    } else zeroes = 0;
   }
+  if (zeroes === 2) n--;
   return !n;
-};
+}
