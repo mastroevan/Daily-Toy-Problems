@@ -23,18 +23,13 @@ Constraints:
  * @return {boolean}
  */
 
-
- var canPlaceFlowers = function(flowerbed, n) {
-  let openSpots = 0;
+const canPlaceFlowers = (flowerbed, n) => {
   for (let i = 0; i < flowerbed.length; i++) {
-    if (flowerbed[i-1] === 0 && flowerbed[i+1] === 0) {
-      openSpots++;
+    if (!n) return true;
+    if (!flowerbed[i] && !flowerbed[i - 1] && !flowerbed[i + 1]) {
       flowerbed[i] = 1;
+      n--;
     }
   }
-  if (n <= openSpots) {
-    return true;
-  }
-  return false;
+  return !n;
 };
-
