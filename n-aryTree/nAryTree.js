@@ -28,17 +28,33 @@ Follow up: Recursive solution is trivial, could you do it iteratively?k
  * @param {Node|null} root
  * @return {number[]}
  */
+//solution 1: using stack
+//  var preorder = function(root) {
+//   if(!root) return []
+//   var stack = [root];
+//   var result = [];
+//   while(stack.length) {
+//       var node = stack.pop();
+//       result.push(node.val);
+//       while(node.children.length) {
+//           stack.push(node.children.pop());
+//       }
+//   }
+//   return result;
+// };
 
- var preorder = function(root) {
-  if(!root) return []
-  var stack = [root];
-  var result = [];
-  while(stack.length) {
-      var node = stack.pop();
-      result.push(node.val);
-      while(node.children.length) {
-          stack.push(node.children.pop());
-      }
-  }
-  return result;
+//solution 2: DFS
+let traverse = (node, arr = []) => {
+  arr.push(node.val);
+    if(node.children){
+        for(let i = 0; i<node.children.length; i++){
+            traverse(node.children[i], arr);
+        }
+    };
+
+    return arr;
+};
+var preorder = function(root) {
+    if(!root) return [];
+    return traverse(root);
 };
