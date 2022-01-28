@@ -33,5 +33,15 @@ Constraints:
  * @return {number}
  */
  var maxDistToClosest = function(seats) {
-
+  let max = 0, count = 0, seated = false;
+  for (let i = 0; i < seats.length; i++) {
+    if (seats[i] === 1) {
+      max = seated ? Math.max(max, count/2) : Math.max(max, count)
+      seated = true;
+      count = 0;
+    } else {
+      count++;
+    }
+  }
+  return Math.max(count, max);
 };
