@@ -29,7 +29,7 @@ Constraints:
 
 
 var MyHashSet = function() {
-
+  this.set = [];
 };
 
 /**
@@ -37,7 +37,7 @@ var MyHashSet = function() {
  * @return {void}
  */
 MyHashSet.prototype.add = function(key) {
-
+  this.set[key] = key;
 };
 
 /**
@@ -45,7 +45,7 @@ MyHashSet.prototype.add = function(key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function(key) {
-
+  delete this.set[key];
 };
 
 /**
@@ -53,7 +53,7 @@ MyHashSet.prototype.remove = function(key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function(key) {
-
+  return undefined !== this.set[key];
 };
 
 /**
