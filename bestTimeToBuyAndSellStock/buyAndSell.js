@@ -30,6 +30,7 @@ Constraints:
  * @param {number[]} prices
  * @return {number}
  */
+/*
  var maxProfit = function(prices) {
   let profit = 0;
   for (let i = 0; i < prices.length; i++) {
@@ -41,3 +42,11 @@ Constraints:
   }
   return profit;
 };
+*/
+
+//refactored
+var maxProfit = function(prices){
+  return prices.reduce((res, v, i, arr) => {
+    return v > arr[i - 1] ? res + v - arr[i - 1] : res;
+  }, 0)
+}
