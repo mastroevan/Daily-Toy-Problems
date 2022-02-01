@@ -32,7 +32,7 @@ Constraints:
  * @param {number} high
  * @return {TreeNode}
  */
- var trimBST = function(root, low, high) {
+ var trimBST = function(root, low, high) {  
   if (root) {
     if (low <= root.val && root.val <= high) {
       root.left = trimBST(root.left, low, high);
