@@ -42,3 +42,10 @@ var twoSum = function(nums, target) {
     }
   }
 }
+
+var twoSum = function (nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+  let n = nums.find(elem => elem + nums[i] === target && i !== nums.indexOf(elem));
+  if (n !== undefined) return [i, nums.indexOf(n)];
+  }
+}
