@@ -27,15 +27,29 @@ Follow up: If you have figured out the O(n) solution, try coding another solutio
  * @return {number}
  */
 
-var maxSubArray = function (nums) {
+// var maxSubArray = function (nums) {
+//   let sum = 0;
+//   let max = nums[0];
+//   for (let i = 0; i < nums.length; i++) {
+//     sum += nums[i];
+//     max = Math.max(max, sum);
+//     if (sum < 0) {
+//       sum = 0;
+//     }
+//   }
+//   return max;
+// };
+
+
+//optimized solution:
+const maxSubArray = nums => {
+  if (nums.length === 0) return 0;
+  let result = Number.MIN_SAFE_INTEGER;
   let sum = 0;
-  let max = nums[0];
   for (let i = 0; i < nums.length; i++) {
     sum += nums[i];
-    max = Math.max(max, sum);
-    if (sum < 0) {
-      sum = 0;
-    }
+    result = Math.max(sum, result);
+    sum = sum < 0 ? 0 : sum;
   }
-  return max;
-};
+  return result;
+}
