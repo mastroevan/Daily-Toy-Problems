@@ -24,17 +24,37 @@ Constraints:
  * @param {string} s
  * @return {boolean}
  */
- var isValid = function(s) {
-  const stack = []
-  for (const c of s) {
-    if (c === '{' || c === '[' || c === '(') {
-      stack.push(c);
-    } else {
-      const p = stack.pop();
-      if ((c === '}' && p !== '{') || (c === ']' && p !== '[') || (c === ')' && p !== '(')) {
+//  var isValid = function(s) {
+//   const stack = []
+//   for (const c of s) {
+//     if (c === '{' || c === '[' || c === '(') {
+//       stack.push(c);
+//     } else {
+//       const p = stack.pop();
+//       if ((c === '}' && p !== '{') || (c === ']' && p !== '[') || (c === ')' && p !== '(')) {
+//         return false;
+//       }
+//     }
+//   }
+//   return stack.length === 0;
+// };
+
+let isValid = s => {
+  let map = new Map();
+  map.set('{', '}');
+  map.set('[', ']');
+  map.set('(', ')');
+  let b = [];
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s.charAt(i))) {
+      b.push(s.charAt(i));
+    }
+    else {
+      let pop = b.pop();
+      if (map.get(pop) !== s.charAt(i)) {
         return false;
       }
     }
   }
-  return stack.length === 0;
-};
+  return b.length === 0;
+}
