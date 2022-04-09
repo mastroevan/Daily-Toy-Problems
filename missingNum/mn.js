@@ -36,13 +36,15 @@ Follow up: Could you implement a solution using only O(1) extra space complexity
  * @param {number[]} nums
  * @return {number}
  */
- var missingNumber = function(nums) {
-  let n = nums.length;
-  while (n >= 0) {
-    if (!nums.includes(n)) {
-      return n;
-    }
-    n--;
-  }
-  return -1;
-};
+//  var missingNumber = function(nums) {
+//   let n = nums.length;
+//   while (n >= 0) {
+//     if (!nums.includes(n)) {
+//       return n;
+//     }
+//     n--;
+//   }
+//   return -1;
+// };
+
+const missingNumber = nums => nums.reduce((a, e) => a - e, (nums.length * (nums.length + 1)) / 2);
