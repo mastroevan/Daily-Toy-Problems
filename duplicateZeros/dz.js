@@ -27,13 +27,27 @@ Constraints:
  * @param {number[]} arr
  * @return {void} Do not return anything, modify arr in-place instead.
  */
- var duplicateZeros = function(arr) {
-  for(let i = 0; i < arr.length; ++i) {
-      if(arr[i] == 0) {
-          for(let j = arr.length - 1; j > i; j--)
-              arr[j] = arr[j - 1];
-          i++;
-      }
-  }
-}
+//  var duplicateZeros = function(arr) {
+//   for(let i = 0; i < arr.length; ++i) {
+//       if(arr[i] == 0) {
+//           for(let j = arr.length - 1; j > i; j--)
+//               arr[j] = arr[j - 1];
+//           i++;
+//       }
+//   }
+// }
 
+
+var duplicateZeros = function(arr) {
+    let i=0;
+    let len=arr.length;
+    while(i<arr.length){
+        if(arr[i]==0){
+            arr.splice(i,0,0);
+            i++;
+        }
+        i++;
+    }
+    while(arr.length>len)
+        arr.pop();
+};
