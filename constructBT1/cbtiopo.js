@@ -40,15 +40,39 @@ Constraints:
  * @param {number[]} postorder
  * @return {TreeNode}
  */
- var buildTree = function(inorder, postorder) {
-  var callDFS = arr => {
-    if (!arr.length) return null;
-    const val = postorder.pop();
-    const idx = arr.indexOf(val);
-    const node = new TreeNode(val);
-    node.right = callDFS(arr.slice(idx + 1));
-    node.left = callDFS(arr.slice(0, idx));
-    return node;
+
+//DFS SOLUTION
+//  var buildTree = function(inorder, postorder) {
+//   var callDFS = arr => {
+//     if (!arr.length) return null;
+//     const val = postorder.pop();
+//     const idx = arr.indexOf(val);
+//     const node = new TreeNode(val);
+//     node.right = callDFS(arr.slice(idx + 1));
+//     node.left = callDFS(arr.slice(0, idx));
+//     return node;
+//   }
+//   return callDFS(inorder);
+// }
+
+
+//Hash Map Solution, Optimized 
+var buildTree = function(inorder, postorder) {
+  const map = new Map();
+
+  for(let i = 0; i < inorder.length; i++) {
+      map.set(inorder[i], i);
   }
-  return callDFS(inorder);
-}
+
+  function callDFS(start, end) {
+      if(start > end) return null;
+      const val = postorder.pop();
+      const idx = map.get(val);
+      const node = new TreeNode(val);
+      node.right = callDFS(idx+1, end);
+      node.left = callDFS(start, idx-1);
+      return node;
+  }
+
+  return callDFS(0, inorder.length-1);
+};
