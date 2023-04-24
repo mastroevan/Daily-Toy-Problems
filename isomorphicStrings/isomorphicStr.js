@@ -28,31 +28,40 @@ Constraints:
  * @return {boolean}
  */
 
+// var isIsomorphic = function(s, t) {
+//   let obj = {};
+//   for (let i = 0; i < s.length; i++) {
+//     if (!obj['s' + s[i]]) obj['s' + s[i]] = t[i];
+//     if (!obj['t' + t[i]]) obj['t' + t[i]] = s[i];
+//     if (t[i] !== obj['s' + s[i]] || s[i] !== obj['t' + t[i]]) return false;
+//   }
+//   return true;
+// };
+
+// //refactored solution:
+// var isIsomorphic = function(s, t) {
+//   if (s.length != t.length)
+//       return false
+//   let m = new Map()
+//   for (let i = 0; i < s.length; i++) {
+//       if (!m.has(s[i]))
+//           m.set(s[i], t[i])
+//       else {
+
+//           if (m.get(s[i]) != t[i]) {
+
+//               return false
+//           }
+//       }
+//   }
+//   return new Set([...m.values()]).size == m.size
+// };
+
 var isIsomorphic = function(s, t) {
-  let obj = {};
-  for (let i = 0; i < s.length; i++) {
-    if (!obj['s' + s[i]]) obj['s' + s[i]] = t[i];
-    if (!obj['t' + t[i]]) obj['t' + t[i]] = s[i];
-    if (t[i] !== obj['s' + s[i]] || s[i] !== obj['t' + t[i]]) return false;
+  for (let i = 0;  i < s.length;  i++) {
+    if (s.indexOf(s[i], i + 1) !== t.indexOf(t[i], i+1)) {
+      return false;
+    }
   }
   return true;
-};
-
-//refactored solution:
-var isIsomorphic = function(s, t) {
-  if (s.length != t.length)
-      return false
-  let m = new Map()
-  for (let i = 0; i < s.length; i++) {
-      if (!m.has(s[i]))
-          m.set(s[i], t[i])
-      else {
-
-          if (m.get(s[i]) != t[i]) {
-
-              return false
-          }
-      }
-  }
-  return new Set([...m.values()]).size == m.size
-};
+}
